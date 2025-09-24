@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sayyed Khalid Saifullah Suleman | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #030712; /* Rich Black */
+            --bg-secondary: #111827; /* Dark Gray */
+            --text-primary: #F9FAFB; /* Off-white */
+            --text-secondary: #9CA3AF; /* Lighter gray */
+            --accent-purple: #8B5CF6;
+            --accent-pink: #EC4899;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-secondary);
+        }
+
+        h1, h2, h3, h4, .highlight {
+            color: var(--text-primary);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-pink));
+        }
+
+        .gradient-border {
+            border: 2px solid;
+            border-image-slice: 1;
+            border-image-source: linear-gradient(90deg, var(--accent-purple), var(--accent-pink));
+        }
+
+        .glass-nav {
+            background: rgba(17, 24, 39, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .project-card {
+            background: var(--bg-secondary);
+            border: 1px solid #374151;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Animated background blob */
+        #blob {
+            background: linear-gradient(to right, var(--accent-purple), var(--accent-pink));
+            height: 350px;
+            width: 350px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: 0.2;
+            z-index: -1;
+        }
+
+        /* Custom Cursor */
+        .cursor-dot, .cursor-outline {
+            pointer-events: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out, transform 0.2s ease-in-out;
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-pink));
+        }
+
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(139, 92, 246, 0.2); /* Purple with opacity */
+            border: 2px solid var(--accent-purple);
+        }
+
+        @media (min-width: 1024px) {
+            body:hover .cursor-dot,
+            body:hover .cursor-outline {
+                opacity: 1;
+            }
+        }
+        
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- Header & Navigation -->
+    <header id="header" class="glass-nav fixed top-0 left-0 right-0 z-50 transition-transform duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-extrabold tracking-tight gradient-text">SKSS</a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#about" class="text-gray-300 hover:gradient-text transition duration-300">About</a>
+                <a href="#experience" class="text-gray-300 hover:gradient-text transition duration-300">Experience</a>
+                <a href="#projects" class="text-gray-300 hover:gradient-text transition duration-300">Projects</a>
+                <a href="#contact" class="text-gray-300 hover:gradient-text transition duration-300">Contact</a>
+            </nav>
+            <a href="#" class="hidden md:block text-white font-semibold px-5 py-2 rounded-lg gradient-bg hover:opacity-90 transition">
+                Resume
+            </a>
+            <button id="mobile-menu-button" class="md:hidden text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900">
+            <a href="#about" class="block py-3 px-6 text-gray-300 hover:bg-gray-800">About</a>
+            <a href="#experience" class="block py-3 px-6 text-gray-300 hover:bg-gray-800">Experience</a>
+            <a href="#projects" class="block py-3 px-6 text-gray-300 hover:bg-gray-800">Projects</a>
+            <a href="#contact" class="block py-3 px-6 text-gray-300 hover:bg-gray-800">Contact</a>
+            <a href="#" class="block py-3 px-6 text-gray-300 hover:bg-gray-800">Resume</a>
+        </div>
+    </header>
+
+    <main class="relative overflow-hidden">
+        <div id="blob"></div>
+        
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-screen flex items-center justify-center text-center pt-20">
+            <div class="container mx-auto px-6" data-aos="fade-up">
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold highlight leading-tight">
+                    Sayyed Khalid Saifullah Suleman
+                </h1>
+                <p class="mt-4 text-2xl md:text-4xl text-gray-300">I craft <span class="gradient-text font-bold">digital experiences</span>.</p>
+                <p class="mt-6 max-w-2xl mx-auto text-lg">
+                    A detail-oriented student pursuing Integrated M.Tech in Computational & Data Science, with a passion for web development, data analytics, and creating intuitive, user-centric applications.
+                </p>
+                <div class="mt-12">
+                    <a href="#contact" class="text-white font-semibold px-8 py-4 rounded-lg gradient-bg shadow-lg hover:opacity-90 transition-transform duration-300 inline-block transform hover:scale-105">
+                        Get In Touch
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-16 items-center">
+                    <div data-aos="fade-right">
+                        <div class="relative w-full max-w-sm mx-auto">
+                            <div class="absolute inset-0 rounded-xl gradient-bg transform -rotate-6"></div>
+                            <img src="2024744926_Khalid Saifullah.jpeg" alt="Sayyed Khalid Saifullah Suleman" class="relative rounded-xl shadow-2xl w-full">
+                        </div>
+                    </div>
+                    <div data-aos="fade-left">
+                        <h2 class="text-4xl font-bold highlight mb-6">About Me</h2>
+                        <p class="mb-4">
+                            Hello! I'm Khalid, a developer and data enthusiast based in Mumbai. My journey into the world of technology is driven by a desire to build things that are not only functional but also beautiful and easy to use.
+                        </p>
+                        <p class="mb-4">
+                            I thrive on challenges and am constantly learning new skills. My experience spans from customer support, where I mastered communication, to leading a college club, which taught me valuable project management skills.
+                        </p>
+                        <div class="mt-6 flex flex-wrap gap-3">
+                            <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-sm">Python</span>
+                            <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-sm">React</span>
+                            <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-sm">JavaScript</span>
+                            <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-sm">Tailwind CSS</span>
+                            <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-sm">Full-Stack Dev</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-20 md:py-32 bg-gray-900/50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-4xl font-bold highlight">Career Journey</h2>
+                    <p class="mt-2 text-lg">My professional and academic experiences so far.</p>
+                </div>
+                <div class="max-w-3xl mx-auto relative" data-aos="fade-up">
+                    <div class="absolute left-1/2 -translate-x-1/2 h-full w-0.5 gradient-bg"></div>
+                    <!-- Experience Item -->
+                    <div class="relative flex justify-between items-start mb-16">
+                        <div class="w-5/12">
+                            <div class="bg-secondary p-6 rounded-lg shadow-lg text-right">
+                                <h3 class="text-xl font-bold highlight">Customer Support</h3>
+                                <p class="text-purple-400">Sutherland Global</p>
+                                <p class="text-sm mt-1">Feb 2024 - Jun 2024</p>
+                            </div>
+                        </div>
+                        <div class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-secondary border-2 border-purple-400"></div>
+                        <div class="w-5/12"></div>
+                    </div>
+                    <!-- Experience Item -->
+                    <div class="relative flex justify-between items-start">
+                        <div class="w-5/12"></div>
+                        <div class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-secondary border-2 border-pink-400"></div>
+                        <div class="w-5/12">
+                            <div class="bg-secondary p-6 rounded-lg shadow-lg">
+                                <h3 class="text-xl font-bold highlight">Vice President</h3>
+                                <p class="text-pink-400">Feedbox Club - VIT Bhopal</p>
+                                <p class="text-sm mt-1">July 2025 - Present</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-4xl font-bold highlight">Featured Projects</h2>
+                    <p class="mt-2 text-lg">A selection of my recent work.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project Card 1 -->
+                    <div class="project-card rounded-xl overflow-hidden" data-aos="fade-up">
+                        <div class="p-8 flex flex-col h-full">
+                            <h3 class="text-2xl font-bold highlight mb-2">Movie Recommendation System</h3>
+                            <p class="mb-4 flex-grow">Suggests movies to users based on collaborative filtering and content-based algorithms.</p>
+                            <div class="flex flex-wrap gap-2 text-sm mt-auto">
+                                <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded">Python</span>
+                                <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded">Pandas</span>
+                                <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded">Scikit-learn</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project Card 2 -->
+                    <div class="project-card rounded-xl overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                        <div class="p-8 flex flex-col h-full">
+                            <h3 class="text-2xl font-bold highlight mb-2">Job Finder Web App</h3>
+                            <p class="mb-4 flex-grow">Aggregates job listings from various sources with a clean, searchable interface for users.</p>
+                             <div class="flex flex-wrap gap-2 text-sm mt-auto">
+                                <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded">React</span>
+                                <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded">Web Scraping</span>
+                                <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded">Flask</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project Card 3 -->
+                    <div class="project-card rounded-xl overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                        <div class="p-8 flex flex-col h-full">
+                            <h3 class="text-2xl font-bold highlight mb-2">AI Chatbot</h3>
+                            <p class="mb-4 flex-grow">An intelligent chatbot built with NLP libraries to understand and respond to user queries conversationally.</p>
+                             <div class="flex flex-wrap gap-2 text-sm mt-auto">
+                                <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded">Python</span>
+                                <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded">NLTK</span>
+                                <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded">TensorFlow</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project Card 4 -->
+                    <div class="project-card rounded-xl overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                        <div class="p-8 flex flex-col h-full">
+                            <h3 class="text-2xl font-bold highlight mb-2">Medi Care Connect</h3>
+                            <p class="mb-4 flex-grow">A platform to connect patients with doctors, manage appointments, and maintain health records.</p>
+                             <div class="flex flex-wrap gap-2 text-sm mt-auto">
+                                <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded">React</span>
+                                <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded">Node.js</span>
+                                <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded">MongoDB</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project Card 5 -->
+                    <div class="project-card rounded-xl overflow-hidden" data-aos="fade-up" data-aos-delay="400">
+                        <div class="p-8 flex flex-col h-full">
+                            <h3 class="text-2xl font-bold highlight mb-2">Budget Tracker</h3>
+                            <p class="mb-4 flex-grow">A web application to help users manage their personal finances by tracking income and expenses.</p>
+                             <div class="flex flex-wrap gap-2 text-sm mt-auto">
+                                <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded">JavaScript</span>
+                                <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded">HTML5</span>
+                                <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded">CSS3</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project Card 6 -->
+                    <div class="project-card rounded-xl overflow-hidden" data-aos="fade-up" data-aos-delay="500">
+                        <div class="p-8 flex flex-col h-full">
+                            <h3 class="text-2xl font-bold highlight mb-2">Time Tracker</h3>
+                            <p class="mb-4 flex-grow">A productivity tool to monitor time spent on different tasks and projects, enhancing workflow efficiency.</p>
+                             <div class="flex flex-wrap gap-2 text-sm mt-auto">
+                                <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded">React</span>
+                                <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded">Firebase</span>
+                                <span class="bg-gray-700 text-gray-300 px-2 py-1 rounded">Tailwind CSS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 md:py-32">
+            <div class="container mx-auto px-6 text-center" data-aos="fade-up">
+                <h2 class="text-4xl font-bold highlight">Let's Connect</h2>
+                <p class="mt-4 max-w-xl mx-auto text-lg">
+                    I'm currently seeking new opportunities. My inbox is always open, whether for a potential project or just to say hi!
+                </p>
+                <div class="mt-10 space-y-4">
+                    <p class="text-lg text-gray-300">
+                        Click here to contact: 
+                        <a href="mailto:sayyed.24mip10037@gmail.com" class="font-semibold text-white hover:gradient-text transition-colors duration-300">sayyed.24mip10037@gmail.com</a>
+                    </p>
+                    <p class="text-lg text-gray-300">
+                        +91 9833542317
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-secondary">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-400">
+             <div class="flex justify-center space-x-6 mb-4">
+                 <a href="https://github.com/SaifullahSayyed" target="_blank" rel="noopener noreferrer" class="hover:text-white transition"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+                 <a href="https://www.linkedin.com/in/saifullah-sayyed-795209282" target="_blank" rel="noopener noreferrer" class="hover:text-white transition"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+            </div>
+            <p>&copy; 2024 Sayyed Khalid Saifullah Suleman. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 50,
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // Hide header on scroll down
+        let lastScrollTop = 0;
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                 header.style.transform = 'translateY(0)';
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        });
+
+        // Custom Cursor
+        const cursorDot = document.querySelector(".cursor-dot");
+        const cursorOutline = document.querySelector(".cursor-outline");
+        window.addEventListener("mousemove", function (e) {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
+        
+    </script>
+</body>
+
+</html>
+
+
